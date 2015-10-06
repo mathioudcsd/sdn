@@ -29,11 +29,17 @@ class Tutorial (object):
 
   def act_like_switch (self, packet, packet_in):
 
-    # Here's some psuedocode to start you off implementing a learning
-    # switch.  You'll need to rewrite it as real Python code.
-
     # Learn the port for the source MAC
+    self.mac_to_port[packet.src] = packet.port  # update / create an entry Mac:Port
     
+    if packet.dst in self.mac_to_port:
+      #send to the port it has to go to
+      self.resend_packet(packet_in, self.mac_to_port[packet.dst])
+      
+    else:
+      #flood
+
+    """
     self.mac_to_port = ... <add or update entry>
     
     if the port associated with the destination MAC of the packet is known:
@@ -60,7 +66,7 @@ class Tutorial (object):
       # Flood the packet out everything but the input port
       # This part looks familiar, right?
       self.resend_packet(packet_in, of.OFPP_ALL)
-
+      """
   def _handle_PacketIn (self, event):
 
     packet = event.parsed # This is the parsed packet data.
