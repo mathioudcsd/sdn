@@ -33,7 +33,7 @@ class Tutorial (object):
     # switch.  You'll need to rewrite it as real Python code.
 
     # Learn the port for the source MAC
-    packet.
+    
     self.mac_to_port = ... <add or update entry>
     
     if the port associated with the destination MAC of the packet is known:
