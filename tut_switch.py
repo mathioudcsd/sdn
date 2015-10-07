@@ -30,14 +30,14 @@ class Tutorial (object):
   def act_like_switch (self, packet, packet_in):
 
     # Learn the port for the source MAC
-    self.mac_to_port[packet.src] = packet.port  # update / create an entry Mac:Port
+    self.mac_to_port[packet.src] = packet.Port  # update / create an entry Mac:Port
     
     if packet.dst in self.mac_to_port:
       #send to the port it has to go to
       self.resend_packet(packet_in, self.mac_to_port[packet.dst])
-      
     else:
       #flood
+      self.resend_packet(packet_in, of.OFPP_ALL)
 
     """
     self.mac_to_port = ... <add or update entry>
